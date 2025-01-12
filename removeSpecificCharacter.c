@@ -10,15 +10,15 @@ int main()
 	scanf("%[^\n]",string1);
 	scanf("\n");
 	scanf("%c",&ch);
-	int j = 0;
-	for(int i = 0; i < strlen(string1); i++)
+	int resultIterator = 0;
+	for(int iterator = 0; iterator < strlen(string1); iterator++)
 	{
-		if(string1[i] != ch)
+		if(string1[iterator] != ch)
 		{
-			result[j++] = string1[i];
+			result[resultIterator++] = string1[iterator];
 		}
 	}
-	result[j] = '\0';
+	result[resultIterator] = '\0';
 	printf("%s\n", result);
 	return 0;
 }

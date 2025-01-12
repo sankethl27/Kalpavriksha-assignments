@@ -12,16 +12,16 @@ int main()
 	int size = strlen(string);
 	int iterator = 0;
 	char current;
-	for(int i = 0; i < size;i++)
+	for(int iterator = 0; iterator < size;iterator++)
 	{	
-		current = string[i];
+		current = string[iterator];
 		frequency = 0;
-		while(string[i] == current)
+		while(string[iterator] == current)
 		{
 			frequency++;
-			i++;
+			iterator++;
 		}
-		i--;
+		iterator--;
 		result[iterator++] = current;
 		result[iterator++] = frequency + '0';
 	}
