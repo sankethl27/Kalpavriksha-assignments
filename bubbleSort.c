@@ -3,23 +3,21 @@
 #include <math.h>
 #include <stdlib.h>
 
-
 typedef struct singlyLinkedList
 {
     int data;
     struct singlyLinkedList *next;
-}node;
+} node;
 
-
-node* createNode(int value)
+node *createNode(int value)
 {
-    node* newNode = (node*)malloc(sizeof(node));
+    node *newNode = (node *)malloc(sizeof(node));
     newNode->data = value;
     newNode->next = NULL;
     return newNode;
 }
 
-void swap(node *first , node* second)
+void swap(node *first, node *second)
 {
     int temp = first->data;
     first->data = second->data;
@@ -37,18 +35,21 @@ void printLinkedList(node *head)
 }
 void bubbleSortLinkedList(node *head)
 {
-    
+
     int swapped;
     node *current = head;
-    node* tailPointer = NULL;
+    node *tailPointer = NULL;
 
-    do {
+    do
+    {
         swapped = 0;
         current = head;
 
-        while (current->next != tailPointer) {
-            if (current->data > current->next->data) {
-                swap(current , current->next);
+        while (current->next != tailPointer)
+        {
+            if (current->data > current->next->data)
+            {
+                swap(current, current->next);
                 swapped = 1;
             }
             current = current->next;
@@ -56,15 +57,15 @@ void bubbleSortLinkedList(node *head)
         tailPointer = current;
     } while (swapped);
 }
-node* createLinkedList()
+node *createLinkedList()
 {
-    node* head = NULL;
-    node* current = NULL;
+    node *head = NULL;
+    node *current = NULL;
     int number;
     char input;
-    while(scanf("%d" , &number) == 1)
+    while (scanf("%d", &number) == 1)
     {
-        if(head == NULL)
+        if (head == NULL)
         {
             current = createNode(number);
             head = current;
@@ -74,7 +75,7 @@ node* createLinkedList()
             current->next = createNode(number);
             current = current->next;
         }
-        if(getchar() == '\n')
+        if (getchar() == '\n')
         {
             break;
         }
