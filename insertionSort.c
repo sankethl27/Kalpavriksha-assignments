@@ -33,37 +33,34 @@ void printLinkedList(node *head)
     printf("\n");
 }
 
-void insertionSortLinkedList(node **head)
+node* insertionSortLinkedList(node *head)
 {
-    if (*head == NULL)
-        return;
-
-    node *sorted = NULL;
-    node *current = *head;
-
-    while (current != NULL)
+    node* current = head->next;
+    node* dummy = (node*)createNode(-1);
+    dummy->next = head;
+    node *previous = head;
+    while(current != NULL)
     {
-        node *next = current->next;
-        if (sorted == NULL || sorted->data >= current->data)
+        node* temp = dummy;
+        if(previous->data <= current->data)
         {
-            current->next = sorted;
-            sorted = current;
+            previous = current;
+            current = current->next;
         }
         else
         {
-            node *temp = sorted;
-            while (temp->next != NULL && temp->next->data < current->data)
+            node* temp = dummy; 
+            while(temp->next->data <  current->data)
             {
                 temp = temp->next;
             }
+            previous->next = current->next;
             current->next = temp->next;
             temp->next = current;
-        }
-
-        current = next;
+            current = previous->next;   
+        } 
     }
-
-    *head = sorted;
+    return dummy->next;
 }
 
 node *createLinkedList()
@@ -95,9 +92,8 @@ node *createLinkedList()
 int main()
 {
     node *head = createLinkedList();
-
-    insertionSortLinkedList(&head);
-    printf(" elements are: ");
+    head = insertionSortLinkedList(head);
+    printf("Ascending order of  elements are: ");
     printLinkedList(head);
     return 0;
 }
