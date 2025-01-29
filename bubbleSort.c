@@ -35,28 +35,35 @@ void printLinkedList(node *head)
 }
 void bubbleSortLinkedList(node *head)
 {
-
-    int swapped;
     node *current = head;
-    node *tailPointer = NULL;
-
-    do
+    node *tail;
+    int size = 0;
+    if(head == NULL)
     {
-        swapped = 0;
-        current = head;
-
-        while (current->next != tailPointer)
+        printf("List is empty");
+    }
+    while(current->next != NULL)
+    {
+        size++;
+        current = current->next;
+    }
+    tail = current;
+    current = head;
+    for(int i = 0; i < size; i++)
+    {
+        while(current != tail)
         {
-            if (current->data > current->next->data)
+            if(current->data > current->next->data)
             {
                 swap(current, current->next);
-                swapped = 1;
             }
             current = current->next;
         }
-        tailPointer = current;
-    } while (swapped);
+        tail = current;
+        current = head;
+    }
 }
+
 node *createLinkedList()
 {
     node *head = NULL;
